@@ -15,7 +15,7 @@ function Login() {
     e.preventDefault();
     try {
       if (isLogin) {
-        await login({ email, password });
+        await login(email, password);
         navigate('/');
       } else {
         await register({ email, password, firstName, lastName });

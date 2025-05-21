@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:5000/api';
 
+// Create axios instance
 const api = axios.create({
   baseURL: API_URL,
   headers: {
@@ -10,46 +11,124 @@ const api = axios.create({
 });
 
 // Add token to requests if it exists
-api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
   }
-  return config;
-});
+);
 
-// Auth services
+// Auth service
 export const auth = {
-  register: (userData) => {
-    console.log('Registering with data:', userData);
-    return api.post('/auth/register', userData);
+  login: async (email, password) => {
+    try {
+      const response = await api.post('/auth/login', { email, password });
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || { message: 'An error occurred during login' };
+    }
   },
-  login: (credentials) => {
-    console.log('Logging in with credentials:', credentials);
-    return api.post('/auth/login', {
-      email: credentials.email,
-      password: credentials.password
-    });
+
+  register: async (userData) => {
+    try {
+      const response = await api.post('/auth/register', userData);
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || { message: 'An error occurred during registration' };
+    }
   },
-  logout: () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+
+  logout: async () => {
+    try {
+      await api.post('/auth/logout');
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  },
+
+  getCurrentUser: async () => {
+    try {
+      const response = await api.get('/auth/me');
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || { message: 'Error fetching user data' };
+    }
   }
 };
 
-// User services
-export const user = {
-  getProfile: () => api.get('/users/profile'),
-  updateProfile: (data) => api.patch('/users/profile', data)
+// Jobs service
+export const jobs = {
+  getAll: async () => {
+    try {
+      const response = await api.get('/jobs');
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || { message: 'Error fetching jobs' };
+    }
+  },
+
+  getOne: async (id) => {
+    try {
+      const response = await api.get(`/jobs/${id}`);
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || { message: 'Error fetching job details' };
+    }
+  },
+
+  create: async (jobData) => {
+    try {
+      const response = await api.post('/jobs', jobData);
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || { message: 'Error creating job' };
+    }
+  },
+
+  update: async (id, jobData) => {
+    try {
+      const response = await api.patch(`/jobs/${id}`, jobData);
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || { message: 'Error updating job' };
+    }
+  },
+
+  delete: async (id) => {
+    try {
+      const response = await api.delete(`/jobs/${id}`);
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || { message: 'Error deleting job' };
+    }
+  }
 };
 
-// Job services
-export const jobs = {
-  getAll: () => api.get('/jobs'),
-  getOne: (id) => api.get(`/jobs/${id}`),
-  create: (data) => api.post('/jobs', data),
-  update: (id, data) => api.patch(`/jobs/${id}`, data),
-  delete: (id) => api.delete(`/jobs/${id}`)
+// User service
+export const users = {
+  getProfile: async () => {
+    try {
+      const response = await api.get('/users/me');
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || { message: 'Error fetching profile' };
+    }
+  },
+
+  updateProfile: async (userData) => {
+    try {
+      const response = await api.patch('/users/me', userData);
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || { message: 'Error updating profile' };
+    }
+  }
 };
 
 export default api;

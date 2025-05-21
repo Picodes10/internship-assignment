@@ -1,5 +1,6 @@
 import sequelize from '../config/database.js';
 import User from '../models/User.js';
+import Job from '../models/Job.js';
 import bcrypt from 'bcryptjs';
 
 const seedDatabase = async () => {
@@ -8,7 +9,7 @@ const seedDatabase = async () => {
     await sequelize.sync({ force: true });
     console.log('Database synced');
 
-    // Create test user with minimal required fields
+    // Create test user
     console.log('Creating test user...');
     const testUser = await User.create({
       email: 'test@test.com',
@@ -18,38 +19,79 @@ const seedDatabase = async () => {
     });
     console.log('Test user created:', testUser.toJSON());
 
-    // Verify the user was created
-    console.log('\nVerifying user creation...');
-    const createdUser = await User.findOne({ 
-      where: { email: 'test@test.com' },
-      raw: false // Get the full model instance
-    });
-    
-    if (!createdUser) {
-      throw new Error('Test user was not created successfully');
+    // Create test jobs
+    console.log('\nCreating test jobs...');
+    const jobs = [
+      {
+        title: 'Senior Software Engineer',
+        company: 'Tech Corp',
+        location: 'San Francisco, CA',
+        description: 'We are looking for a Senior Software Engineer to join our team. The ideal candidate will have experience with modern web technologies and a passion for building scalable applications.',
+        requirements: [
+          '5+ years of software development experience',
+          'Strong knowledge of Node.js and Express',
+          'Experience with React and modern frontend frameworks',
+          'Proficiency in PostgreSQL and database design',
+          'Experience with cloud platforms (AWS/GCP)'
+        ],
+        skills: ['Node.js', 'Express', 'React', 'PostgreSQL', 'AWS', 'TypeScript'],
+        salary: { min: 120000, max: 180000, currency: 'USD' },
+        type: 'Full-time',
+        postedById: testUser.id
+      },
+      {
+        title: 'Frontend Developer',
+        company: 'Web Solutions',
+        location: 'Remote',
+        description: 'Join our team as a Frontend Developer and help us build beautiful, responsive web applications. We value clean code and user experience.',
+        requirements: [
+          '3+ years of frontend development experience',
+          'Strong knowledge of React and modern JavaScript',
+          'Experience with TypeScript',
+          'Proficiency in CSS and responsive design',
+          'Understanding of web performance optimization'
+        ],
+        skills: ['React', 'TypeScript', 'CSS', 'JavaScript', 'Redux', 'Tailwind CSS'],
+        salary: { min: 90000, max: 120000, currency: 'USD' },
+        type: 'Full-time',
+        postedById: testUser.id
+      },
+      {
+        title: 'Backend Developer Intern',
+        company: 'StartupX',
+        location: 'New York, NY',
+        description: 'Great opportunity for a Backend Developer Intern to learn and grow in a fast-paced startup environment. You will work closely with our senior developers.',
+        requirements: [
+          'Currently pursuing a degree in Computer Science or related field',
+          'Basic knowledge of Node.js and Express',
+          'Understanding of database concepts',
+          'Familiarity with Git and version control',
+          'Strong problem-solving skills'
+        ],
+        skills: ['Node.js', 'Express', 'PostgreSQL', 'Git', 'JavaScript'],
+        salary: { min: 25, max: 35, currency: 'USD' },
+        type: 'Internship',
+        postedById: testUser.id
+      }
+    ];
+
+    for (const jobData of jobs) {
+      const job = await Job.create(jobData);
+      console.log('Created job:', job.title);
     }
 
-    // Verify password was hashed
-    const isHashed = createdUser.password !== 'test123';
-    console.log('Password is hashed:', isHashed);
-    console.log('Stored password hash:', createdUser.password);
-
-    // Test password comparison
-    console.log('\nTesting password comparison...');
-    const passwordMatch = await createdUser.comparePassword('test123');
-    console.log('Password comparison test:', passwordMatch);
-
-    // Log all users in database
-    console.log('\nAll users in database:');
-    const allUsers = await User.findAll({ raw: true });
-    console.log(allUsers);
-
-    console.log('\nTest user details:');
-    console.log('Email:', createdUser.email);
-    console.log('Password: test123');
-    console.log('User ID:', createdUser.id);
-    console.log('First Name:', createdUser.firstName);
-    console.log('Last Name:', createdUser.lastName);
+    // Verify the jobs were created
+    console.log('\nVerifying job creation...');
+    const allJobs = await Job.findAll({
+      include: [{
+        model: User,
+        as: 'postedBy',
+        attributes: ['firstName', 'lastName', 'email']
+      }]
+    });
+    
+    console.log('\nAll jobs in database:');
+    console.log(JSON.stringify(allJobs, null, 2));
 
     process.exit(0);
   } catch (error) {

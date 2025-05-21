@@ -25,7 +25,11 @@ const Job = sequelize.define('Job', {
     allowNull: false
   },
   requirements: {
-    type: DataTypes.ARRAY(DataTypes.STRING),
+    type: DataTypes.JSONB,
+    defaultValue: []
+  },
+  skills: {
+    type: DataTypes.JSONB,
     defaultValue: []
   },
   salary: {
