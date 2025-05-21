@@ -1,36 +1,28 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 function Login() {
   const [isLogin, setIsLogin] = useState(true);
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const navigate = useNavigate();
+  const { login, register } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
     try {
-      const response = await fetch(`http://localhost:5000${endpoint}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
-      });
-      const data = await response.json();
-      if (response.ok) {
-        if (isLogin) {
-          localStorage.setItem('token', data.token);
-          alert('Login successful!');
-          navigate('/profile');
-        } else {
-          alert('Registration successful! Please login.');
-          setIsLogin(true);
-        }
+      if (isLogin) {
+        await login({ email, password });
+        navigate('/');
       } else {
-        alert(data.message);
+        await register({ email, password, firstName, lastName });
+        setIsLogin(true);
       }
     } catch (error) {
-      alert(`Error ${isLogin ? 'logging in' : 'registering'}`);
+      alert(error.message || `Error ${isLogin ? 'logging in' : 'registering'}`);
     }
   };
 
@@ -45,18 +37,56 @@ function Login() {
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form className="space-y-6" onSubmit={handleSubmit}>
+            {!isLogin && (
+              <>
+                <div>
+                  <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
+                    First Name
+                  </label>
+                  <div className="mt-1">
+                    <input
+                      id="firstName"
+                      name="firstName"
+                      type="text"
+                      required
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
+                    Last Name
+                  </label>
+                  <div className="mt-1">
+                    <input
+                      id="lastName"
+                      name="lastName"
+                      type="text"
+                      required
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    />
+                  </div>
+                </div>
+              </>
+            )}
+
             <div>
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700">
-                Username
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                Email
               </label>
               <div className="mt-1">
                 <input
-                  id="username"
-                  name="username"
-                  type="text"
+                  id="email"
+                  name="email"
+                  type="email"
                   required
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
