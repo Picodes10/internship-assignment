@@ -41,7 +41,7 @@ pip install -r requirements.txt
 
 1. Copy the example environment file:
    ```bash
-   cp .env.example .env
+   cp .env .env
    ```
 
 2. Edit `.env` and add your Reddit API credentials:
