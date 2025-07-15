@@ -86,7 +86,7 @@ reddit-persona-generator/
 ├── reddit_scraper.py       # Reddit API scraping functionality
 ├── persona_builder.py      # Persona generation and analysis
 ├── requirements.txt        # Python dependencies
-├── .env.example           # Environment variables template
+├── .env                   # Environment variables template
 ├── .gitignore             # Git ignore file
 ├── README.md              # This file
 └── output/                # Generated persona files (created automatically)
