@@ -1,0 +1,80 @@
+=== USER PERSONA FOR u/kojied ===
+Generated on: 2025-07-15 22:51:29
+Data analyzed: 31 posts, 100 comments
+
+## OVERVIEW
+u/kojied is an active Reddit user with 31 posts and 100 comments.
+Most active in communities: AskReddit, civ5, AskNYC
+
+## INTERESTS AND HOBBIES
+• Technology
+  Citation: "I feel violated by intern season..." (Post in r/newyorkcity)
+  Citation: "Best blogs, tutorial channels to learn..." (Post in r/visionosdev)
+• Sports
+  Citation: "I feel violated by intern season..." (Post in r/newyorkcity)
+  Citation: "Would you guys like to see Pokemon Go in AVP?..." (Post in r/VisionPro)
+• Music
+  Citation: "I feel violated by intern season..." (Post in r/newyorkcity)
+  Citation: "You have to kill the bandit units, or donate crop yields though the manor (tithing, different from t..." (Comment in r/ManorLords)
+• Travel
+  Citation: "I feel violated by intern season..." (Post in r/newyorkcity)
+  Citation: "\- the hype has definitely faded, you can see that with the price as well as the number of people di..." (Comment in r/NFT)
+• Movies/TV
+  Citation: "What’s a movie that best represents your childhood?..." (Post in r/GenZ)
+  Citation: "I wore a toga. she showed up in regular clothes..." (Comment in r/AskReddit)
+• Food
+  Citation: "Best blogs, tutorial channels to learn..." (Post in r/visionosdev)
+  Citation: "Killer feature: accessing chatGPT (iPad app) and using audio as primary input..." (Post in r/VisionPro)
+• Gaming
+  Citation: "Can't wait for Vision Air 5 launching in 2034 with these transparent displays!..." (Post in r/VisionPro)
+  Citation: "Killer feature: accessing chatGPT (iPad app) and using audio as primary input..." (Post in r/VisionPro)
+• Fitness
+  Citation: "First of all you look good! But if you want to become more "conventionally attractive", here are som..." (Comment in r/GenZ)
+
+## WRITING STYLE AND TONE
+• Average post length: 359 characters
+• Average comment length: 229 characters
+• Sentiment tendency: Positive
+• Writing examples:
+  "I feel violated by intern season..." (Post title in r/newyorkcity)
+  "H1B holders, what are your thoughts on the narrative that you are being exploite..." (Post title in r/AskReddit)
+  "H1B holders, do you feel exploited, or see it as an opportunity to build a bette..." (Post title in r/AskReddit)
+
+## COMMUNITY ENGAGEMENT
+• Most active subreddits: {'AskReddit': 16, 'civ5': 16, 'AskNYC': 11, 'VisionPro': 9, 'ManorLords': 9}
+• Engagement level: High
+• r/newyorkcity: Active poster (1 posts, 0 comments)
+  Example: "I feel violated by intern season..."
+• r/AskReddit: Active commenter (14 comments, 2 posts)
+  Example: "Millenials have less kids, so they have more time and money to spend on themselv..."
+• r/nba: Active poster (1 posts, 0 comments)
+  Example: "What needs to happen for the league to review the inconsistencies of the refs?..."
+
+## BELIEFS AND OPINIONS
+• Opinion from r/newyorkcity
+  Citation: "I feel violated by intern season..." (Post in r/newyorkcity)
+• Opinion from r/VisionPro
+  Citation: "Would you guys like to see Pokemon Go in AVP?..." (Post in r/VisionPro)
+  Citation: "Would you guys like to see Pokemon Go in AVP?..." (Post in r/VisionPro)
+• Opinion from r/ClimateOffensive
+  Citation: "Tracking our individual impacts on the world through ESG ratings..." (Post in r/ClimateOffensive)
+• Opinion from r/Frugal
+  Citation: "How do you decide what to buy and not buy?..." (Post in r/Frugal)
+• Opinion from r/ManorLords
+  Citation: "So in general each family will eat each type of food equally. Which means those with low supply are ..." (Comment in r/ManorLords)
+• Opinion from r/NFT
+  Citation: "\- the hype has definitely faded, you can see that with the price as well as the number of people di..." (Comment in r/NFT)
+  Citation: "\- the hype has definitely faded, you can see that with the price as well as the number of people di..." (Comment in r/NFT)
+• Opinion from r/ChatGPT
+  Citation: "You can ask it to alter its speed and complexity of the response if you ask it to. It'll update its ..." (Comment in r/ChatGPT)
+• Opinion from r/FoodNYC
+  Citation: "Oh interesting, I've been going about once a month recently but haven't noticed. I'm going on Sunday..." (Comment in r/FoodNYC)
+• Opinion from r/China
+  Citation: "I’ve noticed this sub is pro-West leaning. If you want a pro-China leaning response you should check..." (Comment in r/China)
+• Opinion from r/seduction
+  Citation: "Dating apps have been normalized but I still would prefer irl encounters compared to apps. Apps also..." (Comment in r/seduction)
+• Opinion from r/GenZ
+  Citation: "I think you should just shave it off entirely. Get this shaver, it's a bit pricy but you'll never ha..." (Comment in r/GenZ)
+• Opinion from r/civ5
+  Citation: "There are some key technologies which can give you significant advantage in the early game, either i..." (Comment in r/civ5)
+  Citation: "It’s a combination of multiple factors, your military strength, the amount of GPT/luxury you can off..." (Comment in r/civ5)
